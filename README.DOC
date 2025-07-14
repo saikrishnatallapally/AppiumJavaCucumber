@@ -1,1 +1,108 @@
 # Assignment Name : Mobile Application Testing Java Appium Cucumber.
+1. Project Overview
+This project automates mobile application testing using Appium, Java, and Cucumber (BDD). The framework supports Android & iOS testing on emulators device farms.
+________________________________________
+2. Technology Stack
+Tool	Purpose
+Java	Programming Language
+Appium	Mobile Automation Framework
+Cucumber	BDD Test Structure
+Maven	Dependency Management & Build Tool
+TestNG	Test Execution
+ExtentReports	Test Reporting
+Excel sheet	Test Data Management
+________________________________________
+3. Folder Structure
+AppiumJavaCucumberAssignment/
+│
+├── pom.xml                     # Maven config file
+├── extent-config.xml           # Reporting config
+├── src/
+│   ├── main/
+│   │   └── java/
+│   │       └── Capabilities/          # Driver setup, Driver Factory
+│   │       └── pages/          # Page Object Models
+│              └── utils/          # Property Reader, Excel
+│   └── test/
+│       └── java/
+│           └── stepdefinitions/ # Cucumber StepDefs
+│           └── runners/        # Test runners
+|     └── resources/      
+│          └── features/       # .feature files
+|            └── propertiesFiles/       # .properties files
+|            └── testing,xml
+├── Excel/                      # Test data files
+├── Reports/                    # Output test reports
+├── test-output/                # TestNG results
+________________________________________
+4. Prerequisites & Setup
+•	Install Java JDK (8+)
+•	Install Android Studio and configure emulator 
+•	Install Maven
+•	Start Appium Server
+•	Clone this project
+🔧 To install dependencies:
+mvn clean install
+________________________________________
+5. Running the Tests
+🧪 Option 1: TestNg.xml file
+Run the testing.xml file
+🧪 Option 2: From Test Runner Class
+•	Navigate to src/test/java/runners/
+•	Right-click the runner class > Run As > TestNG Test
+🧪 Option 3: run from maven cmd
+Mvn test -DPlatform=android
+
+________________________________________
+6. Writing a Test Case
+✅ Feature File (login.feature)
+gherkin
+Feature: Login functionality
+  @sanity @regression
+  Scenario: Successful login with valid credentials
+    Given I am on the login page
+    When I enter valid username
+    And I enter valid password
+    And I enter date of birth "01012000"
+    And I click on login button
+    Then user land on Home page
+✅ Step Definition (LoginSteps.java)
+@Given("App is launched")
+@Given("I am on the login page")
+	public void I_am_on_the_login_page() {
+		logger.info("Navigating to the application login page");
+		ExtentCucumberAdapter.addTestStepLog("Navigating to the application login page");
+		loginPage = new LoginPage(getDriver());
+		logger.info("Successfully navigated to login page");
+	}
+✅ Page Object (LoginPage.java)
+public class LoginPage {
+    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='username_input_field']")
+	private WebElement usernameField;
+
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='password_input_field']")
+	private WebElement passwordField;
+
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='date_of_birth_field_calendar_icon']/android.widget.Button")
+	private WebElement dobCalendarIcon;
+
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='date_of_birth_dialog']/android.view.View/android.view.View[1]/android.view.View[1]/android.widget.Button")
+	private WebElement selectedDateInPicker;
+
+    public void enterUsername(String username) { usernameField.sendKeys(username); }
+    public void enterPassword(String password) { passwordField.sendKeys(password); }
+    public void tapLoginButton() { loginButton.click(); }
+}
+________________________________________
+7. Reports
+After test execution, an Extent Report will be generated inside the Reports/ folder. Open ExtentSpark.html to view results.
+________________________________________
+8. Device & Platform Configuration
+Configure device settings in config.properties
+platformName=Android
+deviceName=emulator-5554
+appPackage=com.example
+appActivity=com.example.MainActivity
+You can pass desired capabilities via code or config files.
+________________________________________
+
