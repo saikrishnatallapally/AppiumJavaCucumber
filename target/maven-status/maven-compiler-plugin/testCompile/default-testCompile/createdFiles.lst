@@ -1,0 +1,3 @@
+com\challengeapp\runners\TestRunner.class
+com\challengeapp\stepdefinitions\LoginStepDefinitions.class
+com\challengeapp\hooks\Hooks.class

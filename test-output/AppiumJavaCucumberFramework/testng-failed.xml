@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="1" name="Failed suite [AppiumJavaCucumberFramework]" guice-stage="DEVELOPMENT">
+  <test thread-count="1" name="ChallengeTests(failed)">
+    <classes>
+      <class name="com.challengeapp.runners.TestRunner">
+        <methods>
+          <include name="setUpClass"/>
+          <include name="runScenario"/>
+          <include name="setupProperties"/>
+          <include name="tearDownClass"/>
+        </methods>
+      </class> <!-- com.challengeapp.runners.TestRunner -->
+    </classes>
+  </test> <!-- ChallengeTests(failed) -->
+</suite> <!-- Failed suite [AppiumJavaCucumberFramework] -->

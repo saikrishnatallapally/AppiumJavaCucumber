@@ -1,0 +1,6 @@
+com\challengeapp\pages\HomePage.class
+com\challengeapp\utils\PropertyReader.class
+com\challengeapp\pages\BasePage.class
+com\challengeapp\capabilities\DriverManager.class
+com\challengeapp\capabilities\AppiumDriverSetUp.class
+com\challengeapp\pages\LoginPage.class
